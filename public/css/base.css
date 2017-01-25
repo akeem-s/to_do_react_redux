@@ -1,0 +1,6 @@
+.header_container {
+  border-style: solid;
+  border-color: black;
+  border-width: .2rem;
+  display: block;
+}

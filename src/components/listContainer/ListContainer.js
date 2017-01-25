@@ -15,12 +15,16 @@ export class ListContainer extends React.Component{
 
   handleChange(e){
     const {dispatch} = this.props
-    let val = e.target.value
-    dispatch(ListContainerActions.nameChange(val))
+    let listName = e.target.value
+    dispatch(ListContainerActions.nameChange(listName))
   }
 
   handleSubmit(){
-    console.log("handle submit")
+    const {dispatch} = this.props
+    let key = this.props.listContainerReducer.listArray.length
+    let listName = this.props.listContainerReducer.listName
+    let newList = {key: key, name: listName}
+    dispatch(ListContainerActions.handleSubmit(newList))
   }
 
   render(){

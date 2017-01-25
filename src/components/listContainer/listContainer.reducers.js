@@ -1,13 +1,16 @@
 import * as actions from './listContainer.actions.js';
 
 export function listContainerReducer(state = {
-
+  listArray:[]
 }, action){
   switch(action.type){
-    // case 'ENTITY_TYPE_CHANGE':
-    //   return Object.assign({}, state, {
-    //     entityType: action.entityType
-    //   })
+    case 'NAME_CHANGE':
+      return Object.assign({}, state, {
+        listName: action.listName
+      })
+    case 'HANDLE_SUBMIT':
+      state.listArray.push(action.newList)
+      return Object.assign({}, state, {})
 
     default:
       return state

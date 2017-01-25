@@ -1,6 +1,10 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import * as ListContainerActions from './listContainer.actions'
+// components
+import ListComponent from '../listComponent/ListComponent';
+
+// actions
+import * as ListContainerActions from './listContainer.actions.js';
 
 export class ListContainer extends React.Component{
   constructor(props){
@@ -20,6 +24,12 @@ export class ListContainer extends React.Component{
   }
 
   render(){
+    // if(this.props.listContainerReducer.listArray){
+    //   let len = this.props.listContainerReducer.listArray
+    //   for(let i = 0; i < len; i ++){
+    //
+    //   }
+    // }
     return(
       <div className="list_container" >
         <h1>CREATE LIST</h1>
@@ -27,6 +37,9 @@ export class ListContainer extends React.Component{
           <input type="text" name="list_name" placeholder="list name" onChange={this.handleChange}></input>
           <button onClick={this.handleSubmit} ></button>
         </form>
+        <aside>
+          <ListComponent/>
+        </aside>
       </div>
     )
   }

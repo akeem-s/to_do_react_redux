@@ -35,7 +35,7 @@ export class ListContainer extends React.Component{
         <h1>CREATE LIST</h1>
         <form onSubmit={(e) => e.preventDefault()}>
           <input type="text" name="list_name" placeholder="list name" onChange={this.handleChange}></input>
-          <button onClick={this.handleSubmit} ></button>
+          <button onClick={this.handleSubmit} >create list</button>
         </form>
         <aside>
           <ListComponent/>

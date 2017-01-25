@@ -8,9 +8,9 @@ export function nameChange(val){
   }
 }
 
-export function createList(){
+export function createList(val){
   return{
     type: CREATE_LIST,
-    key: input
+    key: val
   }
 }

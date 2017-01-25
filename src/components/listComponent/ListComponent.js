@@ -1,5 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
+//components
+import TaskComponent from '../taskComponent/TaskComponent'
 
 export class ListComponent extends React.Component{
   constructor(props){
@@ -11,7 +13,7 @@ export class ListComponent extends React.Component{
       <div className="list_component_container" >
         <h1> List Name</h1>
         <div className="task_container">
-          {/*Tasks Here*/}
+          <TaskComponent/>
         </div>
       </div>
     )

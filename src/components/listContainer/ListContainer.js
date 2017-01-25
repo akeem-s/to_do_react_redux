@@ -24,7 +24,16 @@ export class ListContainer extends React.Component{
     let key = this.props.listContainerReducer.listArray.length
     let listName = this.props.listContainerReducer.listName
     let newList = {key: key, name: listName}
-    dispatch(ListContainerActions.handleSubmit(newList))
+    if(listName){
+      dispatch(ListContainerActions.handleSubmit(newList))
+      document.getElementById("list_name_input").value = ""
+      dispatch(ListContainerActions.nameChange(''))
+      dispatch(ListContainerActions.listCreateError(''))
+    }
+    else {
+      let error = "List cannot be blank"
+      dispatch(ListContainerActions.listCreateError(error))
+    }
   }
 
   render(){
@@ -34,11 +43,19 @@ export class ListContainer extends React.Component{
     //
     //   }
     // }
+    let errorHtml
+    if(this.props.listContainerReducer.error){
+      errorHtml = (
+        <h1> {this.props.listContainerReducer.error}</h1>
+      )
+    }
+
     return(
       <div className="list_container" >
-        <h1>CREATE LIST</h1>
+        <h1>Create list</h1>
+        {errorHtml}
         <form onSubmit={(e) => e.preventDefault()}>
-          <input type="text" name="list_name" placeholder="list name" onChange={this.handleChange}></input>
+          <input id="list_name_input" type="text" name="list_name" placeholder="list name" onChange={this.handleChange}></input>
           <button onClick={this.handleSubmit} >create list</button>
         </form>
         <aside>

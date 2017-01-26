@@ -71,7 +71,7 @@ export class ListContainer extends React.Component{
         // listArrayHtml.push(<ListComponent key={this.props.listContainerReducer.listArray[i].key} taskKey={this.props.listContainerReducer.listArray[i].key} name={this.props.listContainerReducer.listArray[i].name}/>)
         listArrayHtml.push(
           <div className="list_tab" key={this.props.listContainerReducer.listArray[i].key}>
-            <h5 onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key)}} >{this.props.listContainerReducer.listArray[i].name} </h5>
+            <i class="fa fa-bars" aria-hidden="true"></i><p onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key)}} >{this.props.listContainerReducer.listArray[i].name} </p>
           </div>
         )
       }

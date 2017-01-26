@@ -42,13 +42,18 @@ body {
 }
 
 .list_tab{
-  border-style: solid;
-  border-color: black;
-  border-width: .1px;
   width: 30vw;
-  height: 7vh;
-  text-align: center;
-  line-height: 7vh;
+  height: 38px;
+  line-height: 38px;
+  color: #262626;
+  align-items: center;
+  padding-right: 6px;
+  padding-left: 6px;
+  font-family: "Lato","Geneva CY","Lucida Grande","Arial Unicode MS","Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  text-overflow: ellipsis;
+  cursor: pointer;
 }
 
 #avatar{
@@ -116,11 +121,14 @@ body {
   background-color: #fff;
   color: black;
   width: 30vw;
-  height: 40vw;
+  height: 20vw;
   position: absolute;
   left: 35%;
   top: 20%;
   z-index: 20;
+  border-color: black;
+  border-style: solid;
+  border-radius: 3px;
 }
 
 #list_name_input{
@@ -132,7 +140,7 @@ body {
 #cancel_button{
   display: inline-block;
   float: right;
-  width: 100px;
+  width: 130px;
   height: 30px;
   background: #fafafa;
   border: none;
@@ -149,7 +157,7 @@ body {
 #save_button {
   display: inline-block;
   float: right;
-  width: 100px;
+  width: 130px;
   height: 30px;
   background-color: #328ad6;
   border-color: #328ad6;
@@ -162,7 +170,7 @@ body {
   font-size: 13px;
   line-height: 13px;
   margin-left: 10px;
-  margin-right: 10%;
+  margin-right: 14%;
 }
 
 #list_form{
@@ -174,4 +182,26 @@ body {
   width: 100%;
   height: 100%;
   opacity: .3;
+}
+
+#popup_username{
+  font-size: 13px;
+  margin-left: 8px;
+}
+
+#popup_email{
+  font-size: 10px;
+  margin-left: 69px;
+  margin-bottom: 13px;
+}
+
+#popup_avatar{
+  height: 32px;
+  width: 32px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+  float: left;
+  margin-left: 35px;
 }

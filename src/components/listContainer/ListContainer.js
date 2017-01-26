@@ -15,30 +15,66 @@ export class ListContainer extends React.Component{
 
   handleChange(e){
     const {dispatch} = this.props
-    let val = e.target.value
-    dispatch(ListContainerActions.nameChange(val))
+    let listName = e.target.value
+    dispatch(ListContainerActions.nameChange(listName))
   }
 
   handleSubmit(){
-    console.log("handle submit")
+    const {dispatch} = this.props
+    let key = this.props.listContainerReducer.listArray.length
+    let listName = this.props.listContainerReducer.listName
+    let newList = {key: key, name: listName}
+    if(listName){
+      dispatch(ListContainerActions.handleSubmit(newList))
+      document.getElementById("list_name_input").value = ""
+      dispatch(ListContainerActions.listCreateError(''))
+    }
+    else {
+      let error = "List cannot be blank"
+      dispatch(ListContainerActions.listCreateError(error))
+    }
+  }
+
+  activateList(listKey){
+    const {dispatch} = this.props
+    dispatch(ListContainerActions.activateList(listKey))
   }
 
   render(){
-    // if(this.props.listContainerReducer.listArray){
-    //   let len = this.props.listContainerReducer.listArray
-    //   for(let i = 0; i < len; i ++){
-    //
-    //   }
-    // }
+    let errorHtml;
+    let listArrayHtml = [];
+
+    if(this.props.listContainerReducer.listArray){
+      let len = this.props.listContainerReducer.listArray.length
+      for(let i = 0; i < len; i ++){
+        // listArrayHtml.push(<ListComponent key={this.props.listContainerReducer.listArray[i].key} taskKey={this.props.listContainerReducer.listArray[i].key} name={this.props.listContainerReducer.listArray[i].name}/>)
+        listArrayHtml.push(
+          <div className="list_tab" key={this.props.listContainerReducer.listArray[i].key}>
+            <h3 onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key)}} >{this.props.listContainerReducer.listArray[i].name} </h3>
+          </div>
+        )
+      }
+    }
+
+    if(this.props.listContainerReducer.error){
+      errorHtml = (
+        <h1> {this.props.listContainerReducer.error}</h1>
+      )
+    }
+
+
+
     return(
       <div className="list_container" >
-        <h1>CREATE LIST</h1>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <input type="text" name="list_name" placeholder="list name" onChange={this.handleChange}></input>
+        <div className="mini_nav"></div>
+        {errorHtml}
+        <form id="list_form" onSubmit={(e) => e.preventDefault()}>
+          <input id="list_name_input" type="text" name="list_name" placeholder="list name" onChange={this.handleChange}></input>
           <button onClick={this.handleSubmit} >create list</button>
         </form>
         <aside>
-          <ListComponent/>
+          {listArrayHtml}
+          {/* <ListComponent/> */}
         </aside>
       </div>
     )

@@ -1,16 +1,32 @@
 export const NAME_CHANGE = 'NAME_CHANGE'
-export const CREATE_LIST = 'CREATE_LIST'
+export const HANDLE_SUBMIT = 'HANDLE_SUBMIT'
+export const LIST_CREATE_ERROR = 'LIST_CREATE_ERROR'
+export const ACTIVATE_LIST = 'ACTIVATE_LIST'
 
-export function nameChange(val){
+export function nameChange(listName){
   return{
     type: NAME_CHANGE,
-    newListName: val
+    listName: listName
   }
 }
 
-export function createList(val){
+export function handleSubmit(newList){
   return{
-    type: CREATE_LIST,
-    key: val
+    type: HANDLE_SUBMIT,
+    newList: newList
+  }
+}
+
+export function listCreateError(error){
+  return{
+    type: LIST_CREATE_ERROR,
+    error: error
+  }
+}
+
+export function activateList(listKey){
+  return{
+    type: ACTIVATE_LIST,
+    activeList: listKey
   }
 }

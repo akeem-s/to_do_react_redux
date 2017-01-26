@@ -9,7 +9,10 @@ export class TaskComponent extends React.Component{
   render(){
     return(
       <div className="task_component_container" >
-        <h1> Task</h1>
+        <h4>Task Name</h4>
+        <h5>Details</h5>
+        <h5>Due Date</h5>
+        <h5>completed?</h5>
       </div>
     )
   }

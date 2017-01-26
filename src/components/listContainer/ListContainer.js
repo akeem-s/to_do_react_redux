@@ -50,7 +50,7 @@ export class ListContainer extends React.Component{
         // listArrayHtml.push(<ListComponent key={this.props.listContainerReducer.listArray[i].key} taskKey={this.props.listContainerReducer.listArray[i].key} name={this.props.listContainerReducer.listArray[i].name}/>)
         listArrayHtml.push(
           <div className="list_tab" key={this.props.listContainerReducer.listArray[i].key}>
-            <h3 onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key)}} >{this.props.listContainerReducer.listArray[i].name} </h3>
+            <h5 onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key)}} >{this.props.listContainerReducer.listArray[i].name} </h5>
           </div>
         )
       }
@@ -67,6 +67,7 @@ export class ListContainer extends React.Component{
     return(
       <div className="list_container" >
         <div className="mini_nav"></div>
+        <div className="user_profile_nav"><img src="./img/user_icon.png" id="avatar"></img>User Name<i class="fa fa-bell" aria-hidden="true"></i></div>
         {errorHtml}
         <form id="list_form" onSubmit={(e) => e.preventDefault()}>
           <input id="list_name_input" type="text" name="list_name" placeholder="list name" onChange={this.handleChange}></input>

@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 // components
 import ListComponent from '../listComponent/ListComponent';
+import CreateListPopupComponent from '../createListPopupComponent/CreateListPopupComponent'
 
 // actions
 import * as ListContainerActions from './listContainer.actions.js';
@@ -11,6 +12,20 @@ export class ListContainer extends React.Component{
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.toggleCreateListPopup = this.toggleCreateListPopup.bind(this)
+  }
+
+  componentDidMount(){
+    window.$("#create_list_button").on('click', () => {
+      if(this.props.listContainerReducer.showCreateListPopup == true){
+        console.log("efeiojfieowjfeio")
+        window.$("main").addClass("overlay")
+      }
+      if(!this.props.listContainerReducer.showCreateListPopup) {
+        console.log("else")
+        window.$("main").removeClass("overlay")
+      }
+    })
   }
 
   handleChange(e){
@@ -40,8 +55,14 @@ export class ListContainer extends React.Component{
     dispatch(ListContainerActions.activateList(listKey))
   }
 
+  toggleCreateListPopup(e){
+    e.preventDefault()
+    const {dispatch} = this.props
+    dispatch(ListContainerActions.toggleCreateListPopup(!this.props.listContainerReducer.showCreateListPopup))
+  }
+
   render(){
-    let errorHtml;
+    let errorHtml, createListPopup
     let listArrayHtml = [];
 
     if(this.props.listContainerReducer.listArray){
@@ -62,21 +83,31 @@ export class ListContainer extends React.Component{
       )
     }
 
+    if(this.props.listContainerReducer.showCreateListPopup){
+      createListPopup = <CreateListPopupComponent handleSubmit={this.handleSubmit} toggleCreateListPopup={this.toggleCreateListPopup} handleChange={this.handleChange}/>
+    }
+    if(!this.props.listContainerReducer.showCreateListPopup){
+      createListPopup = null
+    }
 
 
     return(
-      <div className="list_container" >
-        <div className="mini_nav"></div>
-        <div className="user_profile_nav"><img src="./img/user_icon.png" id="avatar"></img>User Name<i class="fa fa-bell" aria-hidden="true"></i></div>
-        {errorHtml}
-        <form id="list_form" onSubmit={(e) => e.preventDefault()}>
-          <input id="list_name_input" type="text" name="list_name" placeholder="list name" onChange={this.handleChange}></input>
-          <button onClick={this.handleSubmit} >create list</button>
-        </form>
-        <aside>
-          {listArrayHtml}
-          {/* <ListComponent/> */}
-        </aside>
+      <div>
+        <div className="list_container" >
+          <div className="mini_nav"></div>
+          <div className="user_profile_nav"><img src="./img/user_icon.png" id="avatar"></img>User Name<i className="fa fa-bell" aria-hidden="true"></i></div>
+          {errorHtml}
+            <div id="create_list_button_container" onClick={this.toggleCreateListPopup}>
+              <div className="circle-plus"><div className="circle"><div className="horizontal"></div><div className="vertical"></div></div></div>
+              <p id="create_list_button">Create List</p>
+            </div>
+          <aside>
+            {listArrayHtml}
+          </aside>
+        </div>
+        <div id="active_list_container">
+          {createListPopup}
+        </div>
       </div>
     )
   }

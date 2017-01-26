@@ -2,6 +2,7 @@ export const NAME_CHANGE = 'NAME_CHANGE'
 export const HANDLE_SUBMIT = 'HANDLE_SUBMIT'
 export const LIST_CREATE_ERROR = 'LIST_CREATE_ERROR'
 export const ACTIVATE_LIST = 'ACTIVATE_LIST'
+export const TOGGLE_CREATE_LIST_POPUP = 'TOGGLE_CREATE_LIST_POPUP'
 
 export function nameChange(listName){
   return{
@@ -28,5 +29,12 @@ export function activateList(listKey){
   return{
     type: ACTIVATE_LIST,
     activeList: listKey
+  }
+}
+
+export function toggleCreateListPopup(val){
+  return{
+    type: TOGGLE_CREATE_LIST_POPUP,
+    showCreateListPopup: val
   }
 }

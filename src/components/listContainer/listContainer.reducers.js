@@ -3,6 +3,7 @@ import * as actions from './listContainer.actions.js';
 export function listContainerReducer(state = {
   listArray:[],
   activeList: '',
+  showCreateListPopup: false,
   error: ''
 }, action){
   switch(action.type){
@@ -25,6 +26,11 @@ export function listContainerReducer(state = {
     case 'ACTIVATE_LIST':
       return Object.assign({}, state, {
         activeList: action.activeList
+      })
+
+    case 'TOGGLE_CREATE_LIST_POPUP':
+      return Object.assign({}, state, {
+        showCreateListPopup: action.showCreateListPopup
       })
 
     default:

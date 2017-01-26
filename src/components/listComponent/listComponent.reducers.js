@@ -1,7 +1,8 @@
 export function listComponentReducer(state={
   taskArray: [],
   taskName: '',
-  taskDetails: ''
+  taskDetails: '',
+  showTaskForm: false
 }, action){
   switch (action.type){
     case 'TASK_NAME_CHANGE':
@@ -20,6 +21,11 @@ export function listComponentReducer(state={
         taskName: '',
         taskDetails: ''
       })
+
+      case 'TOGGLE_TASK_FORM':
+        return Object.assign({}, state, {
+          showTaskForm: action.showTaskForm
+        })
 
     default:
       return state

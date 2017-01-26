@@ -2,6 +2,7 @@ import * as actions from './listContainer.actions.js';
 
 export function listContainerReducer(state = {
   listArray:[],
+  activeList: '',
   error: ''
 }, action){
   switch(action.type){
@@ -19,6 +20,11 @@ export function listContainerReducer(state = {
     case 'LIST_CREATE_ERROR':
       return Object.assign({}, state, {
         error: action.error
+      })
+
+    case 'ACTIVATE_LIST':
+      return Object.assign({}, state, {
+        activeList: action.activeList
       })
 
     default:

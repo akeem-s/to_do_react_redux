@@ -10,6 +10,7 @@ export class ListComponent extends React.Component{
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.toggleTaskForm = this.toggleTaskForm.bind(this)
   }
 
   handleChange(e){
@@ -51,19 +52,41 @@ export class ListComponent extends React.Component{
     }
   }
 
+  toggleTaskForm(){
+    const {dispatch} = this.props
+    dispatch(ListComponentActions.toggleTaskForm(!this.props.listComponentReducer.showTaskForm))
+  }
+
   render(){
+    let taskFormHtml, taskFormShowButton
+    this.props.listComponentReducer.showTaskForm ?
+      taskFormHtml =(
+        <div>
+          <label>task name</label>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <input type="text" name="task_name_input" id="task_name_input" placeholder="task name" onChange={this.handleChange}></input>
+            <label>task details</label>
+            <input type="text" name="task_details_input" id="task_details_input" placeholder="task details" onChange={this.handleChange}></input>
+            <button onClick={this.handleSubmit} >create task</button>
+          </form>
+        </div>
+      )
+      :
+      null
+
+      this.props.listComponentReducer.showTaskFormShowButton ?
+        taskFormShowButton = (
+          <h5 onClick={this.toggleTaskForm} >Add task</h5>
+        )
+        :
+        null
+
     return(
       <div className="list_component_container" >
         <h3> {this.props.name}</h3>
         <div className="new_task_form_container">
-          <form onSubmit={(e) => e.preventDefault()}>
-            <h5>Add task</h5>
-            <label>task name</label>
-            <input type="text" name="task_name_input" id="task_name_input" placeholder="task name" onChange={this.handleChange}></input>
-            <label>task details</label>
-            <input type="text" name="task_details_input" id="task_details_input" placeholder="task details" onChange={this.handleChange}></input>
-          <button onClick={this.handleSubmit} >create task</button>
-          </form>
+
+          {taskFormHtml}
         </div>
         <div className="task_container">
           {/*<TaskComponent/>*/}

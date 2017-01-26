@@ -1,6 +1,7 @@
 export const NAME_CHANGE = 'NAME_CHANGE'
 export const HANDLE_SUBMIT = 'HANDLE_SUBMIT'
 export const LIST_CREATE_ERROR = 'LIST_CREATE_ERROR'
+export const ACTIVATE_LIST = 'ACTIVATE_LIST'
 
 export function nameChange(listName){
   return{
@@ -20,5 +21,12 @@ export function listCreateError(error){
   return{
     type: LIST_CREATE_ERROR,
     error: error
+  }
+}
+
+export function activateList(listKey){
+  return{
+    type: ACTIVATE_LIST,
+    activeList: listKey
   }
 }

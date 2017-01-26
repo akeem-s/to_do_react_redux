@@ -35,6 +35,11 @@ export class ListContainer extends React.Component{
     }
   }
 
+  activateList(listKey){
+    const {dispatch} = this.props
+    dispatch(ListContainerActions.activateList(listKey))
+  }
+
   render(){
     let errorHtml;
     let listArrayHtml = [];
@@ -42,7 +47,12 @@ export class ListContainer extends React.Component{
     if(this.props.listContainerReducer.listArray){
       let len = this.props.listContainerReducer.listArray.length
       for(let i = 0; i < len; i ++){
-        listArrayHtml.push(<ListComponent key={this.props.listContainerReducer.listArray[i].key} taskKey={this.props.listContainerReducer.listArray[i].key} name={this.props.listContainerReducer.listArray[i].name}/>)
+        // listArrayHtml.push(<ListComponent key={this.props.listContainerReducer.listArray[i].key} taskKey={this.props.listContainerReducer.listArray[i].key} name={this.props.listContainerReducer.listArray[i].name}/>)
+        listArrayHtml.push(
+          <div className="list_tab" key={this.props.listContainerReducer.listArray[i].key}>
+            <h3 onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key)}} >{this.props.listContainerReducer.listArray[i].name} </h3>
+          </div>
+        )
       }
     }
 
@@ -56,9 +66,9 @@ export class ListContainer extends React.Component{
 
     return(
       <div className="list_container" >
-        <h1>Create list</h1>
+        <div className="mini_nav"></div>
         {errorHtml}
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form id="list_form" onSubmit={(e) => e.preventDefault()}>
           <input id="list_name_input" type="text" name="list_name" placeholder="list name" onChange={this.handleChange}></input>
           <button onClick={this.handleSubmit} >create list</button>
         </form>

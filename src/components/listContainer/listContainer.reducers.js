@@ -12,7 +12,9 @@ export function listContainerReducer(state = {
 
     case 'HANDLE_SUBMIT':
       state.listArray.push(action.newList)
-      return Object.assign({}, state, {})
+      return Object.assign({}, state, {
+        listName: ''
+      })
 
     case 'LIST_CREATE_ERROR':
       return Object.assign({}, state, {

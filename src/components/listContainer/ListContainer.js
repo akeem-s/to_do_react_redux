@@ -27,7 +27,6 @@ export class ListContainer extends React.Component{
     if(listName){
       dispatch(ListContainerActions.handleSubmit(newList))
       document.getElementById("list_name_input").value = ""
-      dispatch(ListContainerActions.nameChange(''))
       dispatch(ListContainerActions.listCreateError(''))
     }
     else {
@@ -37,18 +36,23 @@ export class ListContainer extends React.Component{
   }
 
   render(){
-    // if(this.props.listContainerReducer.listArray){
-    //   let len = this.props.listContainerReducer.listArray
-    //   for(let i = 0; i < len; i ++){
-    //
-    //   }
-    // }
-    let errorHtml
+    let errorHtml;
+    let listArrayHtml = [];
+
+    if(this.props.listContainerReducer.listArray){
+      let len = this.props.listContainerReducer.listArray.length
+      for(let i = 0; i < len; i ++){
+        listArrayHtml.push(<ListComponent key={this.props.listContainerReducer.listArray[i].key} taskKey={this.props.listContainerReducer.listArray[i].key} name={this.props.listContainerReducer.listArray[i].name}/>)
+      }
+    }
+
     if(this.props.listContainerReducer.error){
       errorHtml = (
         <h1> {this.props.listContainerReducer.error}</h1>
       )
     }
+
+
 
     return(
       <div className="list_container" >
@@ -59,7 +63,8 @@ export class ListContainer extends React.Component{
           <button onClick={this.handleSubmit} >create list</button>
         </form>
         <aside>
-          <ListComponent/>
+          {listArrayHtml}
+          {/* <ListComponent/> */}
         </aside>
       </div>
     )

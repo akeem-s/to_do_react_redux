@@ -9,17 +9,18 @@ export class HeaderComponent extends React.Component{
   render(){
     return(
       <div className="header_container" >
-        <p>List Name</p>
+        <p id="list_name_header">{this.props.listContainerReducer.activeListName}</p>
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  const { headerComponentReducer } = state
+  const { headerComponentReducer, listContainerReducer } = state
 
   return {
-    headerComponentReducer
+    headerComponentReducer,
+    listContainerReducer
   }
 }
 

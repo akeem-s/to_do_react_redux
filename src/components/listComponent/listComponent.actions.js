@@ -21,7 +21,8 @@ export function taskDetailsChange(val){
 export function handleSubmit(newTask){
   return{
     type: HANDLE_TASK_SUBMIT,
-    newTask: newTask
+    newTask: newTask,
+
   }
 }
 

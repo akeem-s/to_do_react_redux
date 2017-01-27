@@ -37,11 +37,10 @@ export class ListComponent extends React.Component{
     let taskDetails = this.props.listComponentReducer.taskDetails
 
     if(taskName){
-      console.log(taskName, taskDetails)
       let key = this.props.taskKey
-      dispatch(ListComponentActions.handleSubmit({taskName: taskName, taskDetails: taskDetails, listId: key}))
+      dispatch(ListComponentActions.handleSubmit({taskName: taskName, taskDetails: taskDetails, id: this.props.listContainerReducer.activeList, completed: false}))
       document.getElementById("task_name_input").value = ""
-      document.getElementById("task_details_input").value = ""
+      // document.getElementById("task_details_input").value = ""
       dispatch(ListComponentActions.taskNameChange(''))
       dispatch(ListComponentActions.taskDetailsChange(''))
       dispatch(ListComponentActions.taskCreateError(''))
@@ -59,20 +58,16 @@ export class ListComponent extends React.Component{
 
   render(){
     let taskFormHtml, taskFormShowButton
-    this.props.listComponentReducer.showTaskForm ?
       taskFormHtml =(
         <div>
-          <label>task name</label>
           <form onSubmit={(e) => e.preventDefault()}>
             <input type="text" name="task_name_input" id="task_name_input" placeholder="task name" onChange={this.handleChange}></input>
-            <label>task details</label>
-            <input type="text" name="task_details_input" id="task_details_input" placeholder="task details" onChange={this.handleChange}></input>
+            {/*<label>task details</label>
+            <input type="text" name="task_details_input" id="task_details_input" placeholder="task details" onChange={this.handleChange}></input>*/}
             <button onClick={this.handleSubmit} >create task</button>
           </form>
         </div>
       )
-      :
-      null
 
       this.props.listComponentReducer.showTaskFormShowButton ?
         taskFormShowButton = (
@@ -81,15 +76,27 @@ export class ListComponent extends React.Component{
         :
         null
 
+      let activeTasks = []
+      let len = this.props.listComponentReducer.taskArray.length
+      for(let i = 0; i < len; i ++){
+        let name = this.props.listComponentReducer.taskArray[i].taskName
+        if(this.props.listComponentReducer.taskArray[i].id == this.props.listContainerReducer.activeList){
+          activeTasks.push(<div key={i} className="task_tab_container">
+          <p className="task_name_tab" key={this.props.listComponentReducer.taskArray[i].id}>  {name} </p>
+          </div>)
+        }
+      }
+
+
     return(
       <div className="list_component_container" >
-        <h3> {this.props.name}</h3>
         <div className="new_task_form_container">
 
           {taskFormHtml}
         </div>
         <div className="task_container">
           {/*<TaskComponent/>*/}
+          {activeTasks}
         </div>
       </div>
     )
@@ -97,10 +104,11 @@ export class ListComponent extends React.Component{
 }
 
 function mapStateToProps(state) {
-  const { listComponentReducer } = state
+  const { listComponentReducer, listContainerReducer } = state
 
   return {
-  	listComponentReducer
+  	listComponentReducer,
+    listContainerReducer
   }
 }
 

@@ -6,6 +6,17 @@ export class CreateListPopupComponent extends React.Component{
     super(props)
   }
 
+  componentDidMount(){
+    window.$("#cancel_button").on('click', () => {
+      if(this.props.listContainerReducer.showCreateListPopup){
+        window.$(".active_list_container").removeClass("overlay")
+      }
+      if(!this.props.listContainerReducer.showCreateListPopup) {
+        window.$(".active_list_container").addClass("overlay")
+      }
+    })
+  }
+
   render(){
     return(
       <div id="create_list_popup" >
@@ -24,4 +35,12 @@ export class CreateListPopupComponent extends React.Component{
   }
 }
 
-export default (CreateListPopupComponent);
+function mapStateToProps(state) {
+  const { listContainerReducer } = state
+
+  return {
+  	listContainerReducer
+  }
+}
+
+export default connect(mapStateToProps)(CreateListPopupComponent);

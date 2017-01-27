@@ -25,10 +25,11 @@ export function listCreateError(error){
   }
 }
 
-export function activateList(listKey){
+export function activateList(listKey, listName){
   return{
     type: ACTIVATE_LIST,
-    activeList: listKey
+    activeList: listKey,
+    activeListName: listName
   }
 }
 

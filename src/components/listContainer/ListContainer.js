@@ -16,14 +16,14 @@ export class ListContainer extends React.Component{
   }
 
   componentDidMount(){
-    // window.$("#create_list_button_container").on('click', () => {
-    //   if(this.props.listContainerReducer.showCreateListPopup){
-    //     window.$(".App").removeClass("overlay")
-    //   }
-    //   if(!this.props.listContainerReducer.showCreateListPopup) {
-    //     window.$(".App").addClass("overlay")
-    //   }
-    // })
+    window.$("#create_list_button_container").on('click', () => {
+      if(this.props.listContainerReducer.showCreateListPopup){
+        window.$(".active_list_container").removeClass("overlay")
+      }
+      if(!this.props.listContainerReducer.showCreateListPopup) {
+        window.$(".active_list_container").addClass("overlay")
+      }
+    })
   }
 
   handleChange(e){
@@ -50,9 +50,9 @@ export class ListContainer extends React.Component{
     }
   }
 
-  activateList(listKey){
+  activateList(listKey, listName){
     const {dispatch} = this.props
-    dispatch(ListContainerActions.activateList(listKey))
+    dispatch(ListContainerActions.activateList(listKey, listName))
   }
 
   toggleCreateListPopup(e){
@@ -62,7 +62,7 @@ export class ListContainer extends React.Component{
   }
 
   render(){
-    let errorHtml, createListPopup
+    let errorHtml, createListPopup, activeListHtml
     let listArrayHtml = [];
 
     if(this.props.listContainerReducer.listArray){
@@ -71,7 +71,7 @@ export class ListContainer extends React.Component{
         // listArrayHtml.push(<ListComponent key={this.props.listContainerReducer.listArray[i].key} taskKey={this.props.listContainerReducer.listArray[i].key} name={this.props.listContainerReducer.listArray[i].name}/>)
         listArrayHtml.push(
           <div className="list_tab" key={this.props.listContainerReducer.listArray[i].key}>
-            <i className="fa fa-bars" style={{display: "inline-block"}} aria-hidden="true"></i><p className="list_name_tab" onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key)}}>{this.props.listContainerReducer.listArray[i].name} </p>
+            <i className="fa fa-bars" style={{display: "inline-block"}} aria-hidden="true"></i><p className="list_name_tab" onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key, this.props.listContainerReducer.listArray[i].name)}}>{this.props.listContainerReducer.listArray[i].name} </p>
           </div>
         )
       }
@@ -90,6 +90,16 @@ export class ListContainer extends React.Component{
       createListPopup = null
     }
 
+    if(this.props.listContainerReducer.activeListName){
+      let taskArray = []
+      let len = this.props.listComponentReducer.taskArray.length
+      // for(let i = 0; i < len; i ++){
+      //   if()
+      // }
+      activeListHtml = (
+        <ListComponent key={this.props.listContainerReducer.activeList} name={this.props.listContainerReducer.activeListName}/>
+      )
+    }
 
     return(
       <div>
@@ -108,8 +118,8 @@ export class ListContainer extends React.Component{
         </div>
         <div id="active_list_container">
           {createListPopup}
-          <input type="text"></input>
           <img src="./img/monster.png" id="monster_png"></img>
+          {activeListHtml}
         </div>
       </div>
     )
@@ -117,10 +127,11 @@ export class ListContainer extends React.Component{
 }
 
 function mapStateToProps(state) {
-  const { listContainerReducer } = state
+  const { listContainerReducer, listComponentReducer } = state
 
   return {
-  	listContainerReducer
+  	listContainerReducer,
+    listComponentReducer
   }
 }
 

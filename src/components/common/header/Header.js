@@ -9,7 +9,7 @@ export class HeaderComponent extends React.Component{
   render(){
     return(
       <div className="header_container" >
-        <p></p>
+        <p id="list_name_header">List Name Placeholder</p>
       </div>
     )
   }

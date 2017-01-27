@@ -16,16 +16,14 @@ export class ListContainer extends React.Component{
   }
 
   componentDidMount(){
-    window.$("#create_list_button").on('click', () => {
-      if(this.props.listContainerReducer.showCreateListPopup == true){
-        console.log("efeiojfieowjfeio")
-        window.$("main").addClass("overlay")
-      }
-      if(!this.props.listContainerReducer.showCreateListPopup) {
-        console.log("else")
-        window.$("main").removeClass("overlay")
-      }
-    })
+    // window.$("#create_list_button_container").on('click', () => {
+    //   if(this.props.listContainerReducer.showCreateListPopup){
+    //     window.$(".App").removeClass("overlay")
+    //   }
+    //   if(!this.props.listContainerReducer.showCreateListPopup) {
+    //     window.$(".App").addClass("overlay")
+    //   }
+    // })
   }
 
   handleChange(e){
@@ -34,7 +32,8 @@ export class ListContainer extends React.Component{
     dispatch(ListContainerActions.nameChange(listName))
   }
 
-  handleSubmit(){
+  handleSubmit(e){
+    e.preventDefault()
     const {dispatch} = this.props
     let key = this.props.listContainerReducer.listArray.length
     let listName = this.props.listContainerReducer.listName
@@ -43,6 +42,7 @@ export class ListContainer extends React.Component{
       dispatch(ListContainerActions.handleSubmit(newList))
       document.getElementById("list_name_input").value = ""
       dispatch(ListContainerActions.listCreateError(''))
+      dispatch(ListContainerActions.toggleCreateListPopup(false))
     }
     else {
       let error = "List cannot be blank"
@@ -71,7 +71,7 @@ export class ListContainer extends React.Component{
         // listArrayHtml.push(<ListComponent key={this.props.listContainerReducer.listArray[i].key} taskKey={this.props.listContainerReducer.listArray[i].key} name={this.props.listContainerReducer.listArray[i].name}/>)
         listArrayHtml.push(
           <div className="list_tab" key={this.props.listContainerReducer.listArray[i].key}>
-            <i class="fa fa-bars" aria-hidden="true"></i><p onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key)}} >{this.props.listContainerReducer.listArray[i].name} </p>
+            <i className="fa fa-bars" style={{display: "inline-block"}} aria-hidden="true"></i><p className="list_name_tab" onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key)}}>{this.props.listContainerReducer.listArray[i].name} </p>
           </div>
         )
       }
@@ -94,12 +94,13 @@ export class ListContainer extends React.Component{
     return(
       <div>
         <div className="list_container" >
-          <div className="mini_nav"></div>
-          <div className="user_profile_nav"><img src="./img/user_icon.png" id="avatar"></img>User Name<i className="fa fa-bell" aria-hidden="true"></i></div>
+          <div className="mini_nav"><i className="fa fa-lg fa-bars header_bars" aria-hidden="true"></i> <i className="fa fa-lg fa-search header_magnify" aria-hidden="true"></i></div>
+          {/*<i className="fa fa-arrow-down arrow_custom" aria-hidden="true"></i>*/}
+          <div className="user_profile_nav"><img src="./img/user_icon.png" id="avatar"></img><p id="user_name_list_container">User Name</p><i className="fa fa-lg fa-bell bell_custom" aria-hidden="true"></i></div>
           {errorHtml}
             <div id="create_list_button_container" onClick={this.toggleCreateListPopup}>
               <div className="circle-plus"><div className="circle"><div className="horizontal"></div><div className="vertical"></div></div></div>
-              <p id="create_list_button">Create List</p>
+              <i className="fa fa-lg fa-plus" aria-hidden="true"></i> <p id="create_list_button">Create List</p>
             </div>
           <aside>
             {listArrayHtml}

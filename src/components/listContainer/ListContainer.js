@@ -108,6 +108,8 @@ export class ListContainer extends React.Component{
         </div>
         <div id="active_list_container">
           {createListPopup}
+          <input type="text"></input>
+          <img src="./img/monster.png" id="monster_png"></img>
         </div>
       </div>
     )

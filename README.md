@@ -1,6 +1,6 @@
-##This is a To Do app built using React, Redux, ES6, JSX, Webpack. This project is in progress, but mostly finished. 
+###This is a To Do app built using React, Redux, ES6, JSX, Webpack. This project is in progress, but mostly finished. 
 
-### Remaining Issues
+#### Remaining Issues
 *  Add deleting tasks
 *  Improve styling
 *  Add aside with additional form for task details

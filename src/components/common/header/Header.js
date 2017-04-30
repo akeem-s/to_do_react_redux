@@ -7,9 +7,11 @@ export class HeaderComponent extends React.Component{
   }
 
   render(){
+    let listNameHtml
+    this.props.listContainerReducer.activeListName ? listNameHtml = this.props.listContainerReducer.activeListName : listNameHtml = "Welcome"
     return(
       <div className="header_container" >
-        <p id="list_name_header">{this.props.listContainerReducer.activeListName}</p>
+        <p id="list_name_header">{listNameHtml}</p>
       </div>
     )
   }

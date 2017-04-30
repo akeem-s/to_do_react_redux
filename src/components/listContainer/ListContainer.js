@@ -15,16 +15,19 @@ export class ListContainer extends React.Component{
     this.toggleCreateListPopup = this.toggleCreateListPopup.bind(this)
   }
 
-  componentDidMount(){
-    window.$("#create_list_button_container").on('click', () => {
-      if(this.props.listContainerReducer.showCreateListPopup){
-        window.$(".active_list_container").removeClass("overlay")
-      }
-      if(!this.props.listContainerReducer.showCreateListPopup) {
-        window.$(".active_list_container").addClass("overlay")
-      }
-    })
-  }
+  // componentDidMount(){
+  //   window.$("#create_list_button_container").on('click', () => {
+  //     if(this.props.listContainerReducer.showCreateListPopup){
+  //       window.$(".list_container").removeClass("overlay")
+  //       window.$(".active_list_container").removeClass("overlay")
+  //
+  //     }
+  //     if(!this.props.listContainerReducer.showCreateListPopup) {
+  //       window.$(".list_container").addClass("overlay")
+  //       window.$(".active_list_container").addClass("overlay")
+  //     }
+  //   })
+  // }
 
   handleChange(e){
     const {dispatch} = this.props
@@ -117,10 +120,10 @@ export class ListContainer extends React.Component{
           </aside>
         </div>
         <div id="active_list_container">
-          {createListPopup}
           <img src="./img/monster.png" id="monster_png"></img>
           {activeListHtml}
         </div>
+        {createListPopup}
       </div>
     )
   }

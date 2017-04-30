@@ -64,7 +64,7 @@ export class ListComponent extends React.Component{
             <input type="text" name="task_name_input" id="task_name_input" placeholder="task name" onChange={this.handleChange}></input>
             {/*<label>task details</label>
             <input type="text" name="task_details_input" id="task_details_input" placeholder="task details" onChange={this.handleChange}></input>*/}
-            <button onClick={this.handleSubmit} >create task</button>
+            <button onClick={this.handleSubmit} id="task_button">create task</button>
           </form>
         </div>
       )
@@ -77,25 +77,36 @@ export class ListComponent extends React.Component{
         null
 
       let activeTasks = []
+
+      // let len = this.props.listComponentReducer.taskArray.length
+      // for(let i = 0; i < len; i ++){
+      //   let name = this.props.listComponentReducer.taskArray[i].taskName
+      //   if(this.props.listComponentReducer.taskArray[i].id == this.props.listContainerReducer.activeList){
+      //     activeTasks.push(
+      //     <div key={i} className="task_tab_container">
+      //       <div className="task_name_tab">
+      //         <i className="fa-lg fa-square-o" aria-hidden="true" ></i> <p key={this.props.listComponentReducer.taskArray[i].id}>  {name} </p>
+      //       </div>
+      //     </div>)
+      //   }
+      // }
+
       let len = this.props.listComponentReducer.taskArray.length
       for(let i = 0; i < len; i ++){
         let name = this.props.listComponentReducer.taskArray[i].taskName
         if(this.props.listComponentReducer.taskArray[i].id == this.props.listContainerReducer.activeList){
-          activeTasks.push(<div key={i} className="task_tab_container">
-          <p className="task_name_tab" key={this.props.listComponentReducer.taskArray[i].id}>  {name} </p>
-          </div>)
+          activeTasks.push( <TaskComponent name={name} key={this.props.listComponentReducer.taskArray[i].id}/>)
         }
       }
 
 
     return(
       <div className="list_component_container" >
-        <div className="new_task_form_container">
+        <div id="new_task_form_container">
 
           {taskFormHtml}
         </div>
         <div className="task_container">
-          {/*<TaskComponent/>*/}
           {activeTasks}
         </div>
       </div>

@@ -165,7 +165,7 @@ body {
   width: 30vw;
   height: 20vw;
   position: absolute;
-  left: 17%;
+  left: 36%;
   top: 20%;
   z-index: 20;
   border-color: #fff;
@@ -252,10 +252,11 @@ body {
 }
 
 #list_name_header{
-  line-height: 5px;
+  /*line-height: 5px;
   height: 5px;
   vertical-align: text-bottom;
-  display: inline-block;
+  display: inline-block;*/
+  margin-left: 5px;
 }
 
 .header_bars{
@@ -285,12 +286,21 @@ body {
   right: 0;
 }
 
+input[id="task_name_input"]::-webkit-input-placeholder {
+  color: white;
+  /*padding-left: 12px;*/
+}
+
+input[name="task_name_input"]{
+  color: white;
+  margin-left: 12px;
+}
+
 #monster_png{
-  height: 50vh;
+  height: 40vh;
   width: auto;
   position: absolute;
   bottom: 0;
-  right: 200px;
 }
 
 .task_name_tab{
@@ -320,5 +330,24 @@ body {
 }
 
 .task_tab_container{
-  margin-top: 10px;
+  margin-top: 2px;
+}
+
+.fa-square-o{
+  margin-right: 20px;
+  margin-left: 15px;
+}
+
+#task_button{
+  background-color: white;
+  border-color: white;
+  border-radius: 18px;
+  position: absolute;
+  top: 8px;
+  right: 20px;
+}
+
+#new_task_form_container{
+  margin-right: 20px;
+  margin-left: 20px;
 }

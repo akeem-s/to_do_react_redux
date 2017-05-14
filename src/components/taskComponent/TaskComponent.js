@@ -11,7 +11,7 @@ export class TaskComponent extends React.Component{
       <div className="task_component_container" >
         <div className="task_tab_container">
           <div className="task_name_tab">
-            <i className="fa-lg fa-square-o" aria-hidden="true" ></i> <p>  {this.props.name} </p>
+            <i className="fa-lg fa-square-o" aria-hidden="true" onClick={()=>{this.props.deleteTask(this.props.name)}}></i> <p>  {this.props.name} </p>
           </div>
         </div>
       </div>

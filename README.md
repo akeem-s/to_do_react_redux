@@ -1,4 +1,4 @@
-####This is a To Do app built using React, Redux, ES6, JSX, Webpack. This project is in progress, but mostly finished. 
+#### This is a To Do app built using React, Redux, ES6, JSX, Webpack. This project is in progress. 
 
 #### Remaining Issues:
 *  Add User login

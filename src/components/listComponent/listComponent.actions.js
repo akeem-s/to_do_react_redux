@@ -41,9 +41,9 @@ export function toggleTaskForm(val){
   }
 }
 
-export function deleteTask(index){
+export function deleteTask(val){
   return{
     type: DELETE_TASK,
-    taskName: val
+    taskId: val
   }
 }

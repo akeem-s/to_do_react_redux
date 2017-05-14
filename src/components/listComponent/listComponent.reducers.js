@@ -18,14 +18,18 @@ export function listComponentReducer(state={
     case 'HANDLE_TASK_SUBMIT':
       state.taskArray.push(action.newTask)
       return Object.assign({}, state, {
-        taskName: '',
-        taskDetails: ''
+        // taskName: '',
+        // taskDetails: ''
       })
 
-      case 'TOGGLE_TASK_FORM':
-        return Object.assign({}, state, {
-          showTaskForm: action.showTaskForm
-        })
+    case 'TOGGLE_TASK_FORM':
+      return Object.assign({}, state, {
+        showTaskForm: action.showTaskForm
+      })
+
+    case 'DELETE_TASK':
+      state.taskArray.splice(action.taskId, 1)
+      return Object.assign({}, state, {})
 
     default:
       return state

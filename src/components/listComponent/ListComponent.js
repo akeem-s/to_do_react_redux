@@ -58,12 +58,12 @@ export class ListComponent extends React.Component{
 
   deleteTask(taskName){
     const {dispatch} = this.props
-    alert(taskName)
     let len = this.props.listComponentReducer.taskArray.length
+    // console.log(this.props.listComponentReducer.taskArray[0].taskName)
     for(let i = 0; i < len; i ++){
-      if(this.props.listComponentReducer.taskArray[i].taskName == taskName){
-        dispatch(ListComponentActions.deleteTask( this.props.listComponentReducer.taskArray[i].id ))
-        this.props.listComponentReducer.taskArray.splice(this.props.listComponentReducer.taskArray[i].id, 1)
+      if(this.props.listComponentReducer.taskArray[i] && this.props.listComponentReducer.taskArray[i].taskName === taskName){
+        console.log("id", this.props.listComponentReducer.taskArray[i].id)
+        dispatch(ListComponentActions.deleteTask( i ))
       }
     }
   }

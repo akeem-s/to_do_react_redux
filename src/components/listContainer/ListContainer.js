@@ -16,6 +16,7 @@ export class ListContainer extends React.Component{
     this.toggleCreateListPopup = this.toggleCreateListPopup.bind(this)
   }
 
+  // In Progress Styling Change
   // componentDidMount(){
   //   window.$("#create_list_button_container").on('click', () => {
   //     if(this.props.listContainerReducer.showCreateListPopup){
@@ -82,7 +83,6 @@ export class ListContainer extends React.Component{
     if(this.props.listContainerReducer.listArray){
       let len = this.props.listContainerReducer.listArray.length
       for(let i = 0; i < len; i ++){
-        // listArrayHtml.push(<ListComponent key={this.props.listContainerReducer.listArray[i].key} taskKey={this.props.listContainerReducer.listArray[i].key} name={this.props.listContainerReducer.listArray[i].name}/>)
         listArrayHtml.push(
           <div className="list_tab" key={this.props.listContainerReducer.listArray[i].key}>
            <i className="fa fa-bars" style={{display: "inline-block"}} aria-hidden="true"></i> <i className="fa fa-trash-o" style={{display: "inline-block", position: "absolute", "margin-left": "236px", "margin-top": "23px"}} aria-hidden="true" onClick={ () =>   {this.deleteList(this.props.listContainerReducer.listArray[i].key)}}></i> <p className="list_name_tab" onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key, this.props.listContainerReducer.listArray[i].name)}}>{this.props.listContainerReducer.listArray[i].name} </p>
@@ -119,7 +119,6 @@ export class ListContainer extends React.Component{
       <div>
         <div className="list_container" >
           <div className="mini_nav"><i className="fa fa-lg fa-bars header_bars" aria-hidden="true"></i> <i className="fa fa-lg fa-search header_magnify" aria-hidden="true"></i></div>
-          {/*<i className="fa fa-arrow-down arrow_custom" aria-hidden="true"></i>*/}
           <div className="user_profile_nav"><img src="./img/user_icon.png" id="avatar"></img><p id="user_name_list_container">User Name</p><i className="fa fa-lg fa-bell bell_custom" aria-hidden="true"></i></div>
           {errorHtml}
             <div id="create_list_button_container" onClick={this.toggleCreateListPopup}>

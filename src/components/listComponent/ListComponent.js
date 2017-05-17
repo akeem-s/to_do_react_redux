@@ -40,7 +40,6 @@ export class ListComponent extends React.Component{
       let key = this.props.taskKey
       dispatch(ListComponentActions.handleSubmit({taskName: taskName, taskDetails: taskDetails, id: this.props.listContainerReducer.activeList, completed: false}))
       document.getElementById("task_name_input").value = ""
-      // document.getElementById("task_details_input").value = ""
       dispatch(ListComponentActions.taskNameChange(''))
       dispatch(ListComponentActions.taskDetailsChange(''))
       dispatch(ListComponentActions.taskCreateError(''))
@@ -61,7 +60,7 @@ export class ListComponent extends React.Component{
     let len = this.props.listComponentReducer.taskArray.length
     for(let i = 0; i < len; i ++){
       if(this.props.listComponentReducer.taskArray[i] && this.props.listComponentReducer.taskArray[i].taskName === taskName){
-        dispatch(ListComponentActions.deleteTask( i ))
+        dispatch(ListComponentActions.deleteTask(i))
       }
     }
   }
@@ -91,7 +90,6 @@ export class ListComponent extends React.Component{
         if(this.props.listComponentReducer.taskArray[i].id == this.props.listContainerReducer.activeList){
           activeTasks.push( <TaskComponent key={i} name={name} deleteTask={this.deleteTask.bind(this)}/>)
         }
-        // if()
       }
 
 

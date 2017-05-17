@@ -35,6 +35,10 @@ export function listContainerReducer(state = {
         showCreateListPopup: action.showCreateListPopup
       })
 
+    case 'DELETE_LIST':
+      state.listArray.splice(action.listKey, 1)
+      return Object.assign({}, state, {})
+
     default:
       return state
   }

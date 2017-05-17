@@ -3,6 +3,7 @@ export const HANDLE_SUBMIT = 'HANDLE_SUBMIT'
 export const LIST_CREATE_ERROR = 'LIST_CREATE_ERROR'
 export const ACTIVATE_LIST = 'ACTIVATE_LIST'
 export const TOGGLE_CREATE_LIST_POPUP = 'TOGGLE_CREATE_LIST_POPUP'
+export const DELETE_LIST = 'DELETE_LIST'
 
 export function nameChange(listName){
   return{
@@ -37,5 +38,12 @@ export function toggleCreateListPopup(val){
   return{
     type: TOGGLE_CREATE_LIST_POPUP,
     showCreateListPopup: val
+  }
+}
+
+export function deleteList(key){
+  return{
+    type: DELETE_LIST,
+    listKey: key
   }
 }

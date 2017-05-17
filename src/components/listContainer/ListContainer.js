@@ -12,6 +12,7 @@ export class ListContainer extends React.Component{
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.deleteList = this.deleteList.bind(this)
     this.toggleCreateListPopup = this.toggleCreateListPopup.bind(this)
   }
 
@@ -64,6 +65,16 @@ export class ListContainer extends React.Component{
     dispatch(ListContainerActions.toggleCreateListPopup(!this.props.listContainerReducer.showCreateListPopup))
   }
 
+  deleteList(key){
+    const {dispatch} = this.props
+    let len = this.props.listContainerReducer.listArray.length
+    for(var i = 0; i < len; i ++){
+      if(this.props.listContainerReducer.listArray[i] && this.props.listContainerReducer.listArray[i].key === key){
+        dispatch(ListContainerActions.deleteList(i))
+      }
+    }
+  }
+
   render(){
     let errorHtml, createListPopup, activeListHtml
     let listArrayHtml = [];
@@ -74,8 +85,8 @@ export class ListContainer extends React.Component{
         // listArrayHtml.push(<ListComponent key={this.props.listContainerReducer.listArray[i].key} taskKey={this.props.listContainerReducer.listArray[i].key} name={this.props.listContainerReducer.listArray[i].name}/>)
         listArrayHtml.push(
           <div className="list_tab" key={this.props.listContainerReducer.listArray[i].key}>
-            <i className="fa fa-bars" style={{display: "inline-block"}} aria-hidden="true"></i><p className="list_name_tab" onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key, this.props.listContainerReducer.listArray[i].name)}}>{this.props.listContainerReducer.listArray[i].name} </p>
-          </div>
+           <i className="fa fa-bars" style={{display: "inline-block"}} aria-hidden="true"></i> <i className="fa fa-trash-o" style={{display: "inline-block", position: "absolute", "margin-left": "236px", "margin-top": "23px"}} aria-hidden="true" onClick={ () =>   {this.deleteList(this.props.listContainerReducer.listArray[i].key)}}></i> <p className="list_name_tab" onClick={()=>{this.activateList(this.props.listContainerReducer.listArray[i].key, this.props.listContainerReducer.listArray[i].name)}}>{this.props.listContainerReducer.listArray[i].name} </p>
+         </div>
         )
       }
     }

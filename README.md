@@ -1,4 +1,4 @@
-#### This is a basic To Do app built using React, Redux, ES6, JSX, Webpack.
+#### This is a basic clone of the Wunderlist To Do app. It was built using React, Redux, ES6, JSX, Webpack.
 
 ![Screenshot](screenshot.png)
 

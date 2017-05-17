@@ -17,10 +17,7 @@ export function listComponentReducer(state={
 
     case 'HANDLE_TASK_SUBMIT':
       state.taskArray.push(action.newTask)
-      return Object.assign({}, state, {
-        // taskName: '',
-        // taskDetails: ''
-      })
+      return Object.assign({}, state, {})
 
     case 'TOGGLE_TASK_FORM':
       return Object.assign({}, state, {

@@ -1,10 +1,8 @@
-#### This is a To Do app built using React, Redux, ES6, JSX, Webpack. This project is in progress. 
+#### This is a basic To Do app built using React, Redux, ES6, JSX, Webpack. 
 
-#### Remaining Issues:
+![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+
+#### Future Improvements:
 *  Add User login
 *  Persist data to RoR API DB
-*  Add deleting tasks
-*  Improve styling
-*  Add aside with additional form for task details
 *  Time notifications for tasks
-

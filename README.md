@@ -1,9 +1,6 @@
 #### This is a basic To Do app built using React, Redux, ES6, JSX, Webpack.
 
-![screenshot](screenshot.png)
-<p align="center">
-  <img src="screenshot.png" width="350"/>
-</p>
+![Screenshot](screenshot.png)
 
 #### Future Improvements:
 *  Add User login

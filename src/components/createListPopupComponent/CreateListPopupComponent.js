@@ -6,19 +6,6 @@ export class CreateListPopupComponent extends React.Component{
     super(props)
   }
 
-  // componentDidMount(){
-  //   window.$("#cancel_button").on('click', () => {
-  //     if(this.props.listContainerReducer.showCreateListPopup){
-  //       window.$(".list_container").removeClass("overlay")
-  //       window.$(".active_list_container").removeClass("overlay")
-  //     }
-  //     if(!this.props.listContainerReducer.showCreateListPopup) {
-  //       window.$(".list_container").addClass("overlay")
-  //       window.$(".active_list_container").addClass("overlay")
-  //     }
-  //   })
-  // }
-
   render(){
     return(
       <div id="create_list_popup" >

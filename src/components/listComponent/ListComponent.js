@@ -96,7 +96,6 @@ export class ListComponent extends React.Component{
     return(
       <div className="list_component_container" >
         <div id="new_task_form_container">
-
           {taskFormHtml}
         </div>
         <div className="task_container">

@@ -16,21 +16,6 @@ export class ListContainer extends React.Component{
     this.toggleCreateListPopup = this.toggleCreateListPopup.bind(this)
   }
 
-  // In Progress Styling Change
-  // componentDidMount(){
-  //   window.$("#create_list_button_container").on('click', () => {
-  //     if(this.props.listContainerReducer.showCreateListPopup){
-  //       window.$(".list_container").removeClass("overlay")
-  //       window.$(".active_list_container").removeClass("overlay")
-  //
-  //     }
-  //     if(!this.props.listContainerReducer.showCreateListPopup) {
-  //       window.$(".list_container").addClass("overlay")
-  //       window.$(".active_list_container").addClass("overlay")
-  //     }
-  //   })
-  // }
-
   handleChange(e){
     const {dispatch} = this.props
     let listName = e.target.value
@@ -107,9 +92,6 @@ export class ListContainer extends React.Component{
     if(this.props.listContainerReducer.activeListName){
       let taskArray = []
       let len = this.props.listComponentReducer.taskArray.length
-      // for(let i = 0; i < len; i ++){
-      //   if()
-      // }
       activeListHtml = (
         <ListComponent key={this.props.listContainerReducer.activeList} name={this.props.listContainerReducer.activeListName}/>
       )
